@@ -44,19 +44,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'dart:io';
 
-class pickLabels extends StatefulWidget {
+class pickLabels40 extends StatefulWidget {
  
-  pickLabels({Key key, this.productName, this.indexCode, this.barcodeType, }) : super(key: key);
+  pickLabels40({Key key, this.productName, this.indexCode, this.barcodeType, }) : super(key: key);
 
   String productName;
   String indexCode;
   String barcodeType;
   
   @override
-  _pickLabelsState createState() => _pickLabelsState();
+  _pickLabels40State createState() => _pickLabels40State();
 }
 
-class _pickLabelsState extends State<pickLabels> {
+class _pickLabels40State extends State<pickLabels40> {
 
   FlutterTts flutterTts = new FlutterTts();
   String codeDialog;
@@ -147,7 +147,7 @@ class _pickLabelsState extends State<pickLabels> {
             icon: Icon( Icons.share ),
             tooltip: 'Share, Use to create pdf and export it with your app of choise to print the barcode labels that was picked',
             onPressed: () { 
-              _generatePdf();
+              _generatePdf40();
               flutterTts.speak('Creating pdf for printing');
               Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => homePage(),), (route) => route.isFirst); 
             }, // on press
@@ -303,7 +303,7 @@ class _pickLabelsState extends State<pickLabels> {
     ); // scaffold
   } //body widget build
 
-  Future<Uint8List> _generatePdf() async {
+  Future<Uint8List> _generatePdf40() async {
     final doc = pw.Document();
     //add page
     doc.addPage(pw.Page(
@@ -1042,3 +1042,29 @@ class _pickLabelsState extends State<pickLabels> {
   }
 
 }
+/*
+Information About This Label Size:
+Number Across
+4
+Label Width
+45.7mm
+Label Height
+25.4mm
+Horizontal Pitch
+48.3mm
+Vertical Pitch
+25.4mm
+Number Down
+10
+Top Margin
+21.5mm
+Bottom Margin
+21.5mm
+Left Margin
+9.7mm
+Right Margin
+9.7mm
+Also Known As
+LL40, AAS040^, FS40^, LDC4626B^, ULL40
+
+*/

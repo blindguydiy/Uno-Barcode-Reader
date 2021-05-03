@@ -23,7 +23,7 @@ SOFTWARE.
 */
 
 // import pages
-import 'pickLabels.dart';
+import 'createPdfTemplet.dart';
 
 // import packages
 import 'dart:typed_data';
@@ -151,7 +151,7 @@ class _newGenState extends State<newGen> {
                         indexCode = valueText;
                         productName == null ? flutterTts.speak('Enter Name') : productName.length < 1 ? flutterTts.speak('Enter Name') : indexCode == null ? flutterTts.speak('Enter a 4 digit code') : indexCode.length != 4 ? flutterTts.speak('Enter 5 digits') : Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) =>                             pickLabels(productName: productName, indexCode: indexCode, barcodeType: barcodeType)),
+                          MaterialPageRoute(builder: (context) =>                             createPdf(productName: productName, indexCode: indexCode, barcodeType: barcodeType)),
                           );
                         saveHive(indexCode, productName, indexCode, barcodeType);
                       }, // on press

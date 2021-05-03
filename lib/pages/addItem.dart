@@ -154,6 +154,8 @@ class _adItemState extends State<adItem> {
   void searchWeb() async {
     //const url = https://www.google.com/search?q=query+goes+here
     var url = 'https://www.bing.com/search?q="barcode: ${widget.ite}"';
+    //var url = 'https://api.barcodelookup.com/v2/products?barcode=${widget.ite}&formatted=y&key=ifDzhmKslKav42OD93NE'; 
+
     if (await canLaunch(url)) {
       await launch(url, forceWebView: true);
     } else {

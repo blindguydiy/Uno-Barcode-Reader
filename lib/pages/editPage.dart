@@ -23,7 +23,7 @@ SOFTWARE.
 */
 
 //import pages
-import 'pickLabels.dart';
+import 'createPdfTemplet.dart';
 import 'productsPage.dart';
 
 //import packages
@@ -184,13 +184,13 @@ class _editItemState extends State<editItem> {
                       ), // expanded
                       Expanded(
                         child: FloatingActionButton.extended(
-                          tooltip: 'Pick labels to print on',
-                          label: Text('GENERATE BARCODE'),
+                          tooltip: 'Generate pdf templet to print on',
+                          label: Text('GENERATE PDF				'),
                           heroTag: 'btn6',
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) =>                             pickLabels(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
+                              MaterialPageRoute(builder: (context) =>                             createPdf(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
                           );
                           }, // on press
                           backgroundColor: Colors.red,
