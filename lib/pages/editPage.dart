@@ -23,7 +23,7 @@ SOFTWARE.
 */
 
 //import pages
-import 'createPdfTemplet.dart';
+//import 'createPdfTemplet.dart';
 import 'productsPage.dart';
 
 //import packages
@@ -112,9 +112,11 @@ class _editItemState extends State<editItem> {
                       FloatingActionButton.extended(
                         tooltip: 'Cancel and go back to product list screen',
                         label: Text('CANCEL'),
-                        heroTag: 'btn1',
+                        heroTag: 'cancel',
                         onPressed: () {
-                          Navigator.of(context, rootNavigator: true).pop();
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => productList(),), (route) => route.isFirst); 
+
+                          //Navigator.of(context, rootNavigator: true).pop();
                         }, // onPress
                         backgroundColor: Colors.red,
                         foregroundColor: Colors.white,
@@ -122,7 +124,7 @@ class _editItemState extends State<editItem> {
                       FloatingActionButton.extended(
                         tooltip: 'Save item to device',
                         label: Text('SAVE'),
-                        heroTag: 'btn2',
+                        heroTag: 'save',
                         onPressed: () {
                           setState(() {
                             codeDialog = valueText;
@@ -137,7 +139,7 @@ class _editItemState extends State<editItem> {
                       FloatingActionButton.extended(
                         tooltip: 'Search the web for the product with the barcode detected',
                         label: Text('SEARCH WEB'),
-                        heroTag: 'btn3',
+                        heroTag: 'searchWeb',
                         onPressed: () {
                           setState(() {
                             searchWeb();
@@ -156,10 +158,10 @@ class _editItemState extends State<editItem> {
                         child: FloatingActionButton.extended(
                           tooltip: 'Delete item from device',
                           label: Text('DELETE ITEM'),
-                          heroTag: 'btn4',
+                          heroTag: 'deleteItem',
                           onPressed: () {
                             setState(() {
-                              deleteItem(widget.Index);
+                              deleteItem(indexCode); //Index);
                               Navigator.of(context, rootNavigator: true).pop();
                             }); // setstate
                           }, // on press
@@ -171,7 +173,7 @@ class _editItemState extends State<editItem> {
                         child: FloatingActionButton.extended(
                           tooltip: 'Delete all items from device',
                           label: Text('CLEAR LIST'),
-                          heroTag: 'btn5',
+                          heroTag: 'clearList',
                           onPressed: () {
                             setState(() {
                               clearList();
@@ -184,14 +186,16 @@ class _editItemState extends State<editItem> {
                       ), // expanded
                       Expanded(
                         child: FloatingActionButton.extended(
-                          tooltip: 'Generate pdf templet to print on',
-                          label: Text('GENERATE PDF				'),
-                          heroTag: 'btn6',
+                          tooltip: 'Create pdf templet to print on',
+                          label: Text('CREATE PDF'),
+                          heroTag: 'createPdf',
                           onPressed: () {
+/*
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) =>                             createPdf(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
                           );
+*/
                           }, // on press
                           backgroundColor: Colors.red,
                           foregroundColor: Colors.white,
@@ -213,14 +217,16 @@ class _editItemState extends State<editItem> {
     box.put(bar_code, Product(item_name, bCode, bcType));
   }
 
-  void deleteItem(Bcode) async {
+  void deleteItem(var item) async {
     var box = Hive.box<Product>('products');
-    box.deleteAt(Bcode);
+    var _product = box.get('${item}');
+    if (_product != null)
+      box.delete('${item}');
   }
 
   void searchWeb() async {
     //const url = https://www.google.com/search?q=query+goes+here
-    var url = 'https://www.bing.com/search?q="barcode: ${widget.indexCode}"';
+    var url = 'https://barcodesdatabase.org/barcode/5449000009067'; //'https://www.bing.com/search?q="barcode: ${widget.indexCode}"';
     if (await canLaunch(url)) {
       await launch(url, forceWebView: true);
     } else {
