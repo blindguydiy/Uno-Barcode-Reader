@@ -121,94 +121,98 @@ class _pickLabels32State extends State<pickLabels32> {
           ), // icon button
         ], // action
       ), // appbar
-      body: Container(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget> [
-                Container(
-                  child: Text('Pick on which labels you would like to print your barcodes. When finished choosing which labels should be printed on use the share button above on the appBar to generate an a4 label sheet.'),
-                ), // container
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 1', _labelVal1),
-                    checkbox('LABEL 2', _labelVal2),
-                    checkbox('LABEL 3', _labelVal3),
-                    checkbox('LABEL 4', _labelVal4),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 5', _labelVal5),
-                    checkbox('LABEL 6', _labelVal6),
-                    checkbox('LABEL 7', _labelVal7),
-                    checkbox('LABEL 8', _labelVal8),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 9', _labelVal9),
-                    checkbox('LABEL 10', _labelVal10),
-                    checkbox('LABEL 11', _labelVal11),
-                    checkbox('LABEL 12', _labelVal12),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 13', _labelVal13),
-                    checkbox('LABEL 14', _labelVal14),
-                    checkbox('LABEL 15', _labelVal15),
-                    checkbox('LABEL 16', _labelVal16),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 17', _labelVal17),
-                    checkbox('LABEL 18', _labelVal18),
-                    checkbox('LABEL 19', _labelVal19),
-                    checkbox('LABEL 20', _labelVal20),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 21', _labelVal21),
-                    checkbox('LABEL 22', _labelVal22),
-                    checkbox('LABEL 23', _labelVal23),
-                    checkbox('LABEL 24', _labelVal24),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 25', _labelVal25),
-                    checkbox('LABEL 26', _labelVal26),
-                    checkbox('LABEL 27', _labelVal27),
-                    checkbox('LABEL 28', _labelVal28),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 29', _labelVal29),
-                    checkbox('LABEL 30', _labelVal30),
-                    checkbox('LABEL 31', _labelVal31),
-                    checkbox('LABEL 32', _labelVal32),
-                  ]  // row widget
-                ), // row
-              ],  // column widget
-            ), //column
-          ), // padding
-        ),  //singlescroll
-      ), // body container
+      body: DefaultTextStyle(
+        child:  Container(
+          color: Colors.black,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget> [
+                  Container(
+                    child: Text('Pick on which labels you would like to print your barcodes. When finished choosing which labels should be printed on use the share button above on the appBar to generate an a4 label sheet.'),
+                  ), // container
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 1', _labelVal1),
+                      checkbox('LABEL 2', _labelVal2),
+                      checkbox('LABEL 3', _labelVal3),
+                      checkbox('LABEL 4', _labelVal4),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 5', _labelVal5),
+                      checkbox('LABEL 6', _labelVal6),
+                      checkbox('LABEL 7', _labelVal7),
+                      checkbox('LABEL 8', _labelVal8),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 9', _labelVal9),
+                      checkbox('LABEL 10', _labelVal10),
+                      checkbox('LABEL 11', _labelVal11),
+                      checkbox('LABEL 12', _labelVal12),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 13', _labelVal13),
+                      checkbox('LABEL 14', _labelVal14),
+                      checkbox('LABEL 15', _labelVal15),
+                      checkbox('LABEL 16', _labelVal16),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 17', _labelVal17),
+                      checkbox('LABEL 18', _labelVal18),
+                      checkbox('LABEL 19', _labelVal19),
+                      checkbox('LABEL 20', _labelVal20),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 21', _labelVal21),
+                      checkbox('LABEL 22', _labelVal22),
+                      checkbox('LABEL 23', _labelVal23),
+                      checkbox('LABEL 24', _labelVal24),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 25', _labelVal25),
+                      checkbox('LABEL 26', _labelVal26),
+                      checkbox('LABEL 27', _labelVal27),
+                      checkbox('LABEL 28', _labelVal28),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 29', _labelVal29),
+                      checkbox('LABEL 30', _labelVal30),
+                      checkbox('LABEL 31', _labelVal31),
+                      checkbox('LABEL 32', _labelVal32),
+                    ]  // row widget
+                  ), // row
+                ],  // column widget
+              ), //column
+            ), // padding
+          ),  //singlescroll
+        ), // container
+        style: TextStyle(color: Colors.white),
+      ), // defaulttextstyle
     ); // scaffold
   } //body widget build
 
@@ -422,7 +426,246 @@ class _pickLabels32State extends State<pickLabels32> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(title),
+GestureDetector(
+            //child: Text(title),
+//onTap: () {
+              onTap: () {
+                /// manage the state of each value
+                setState(() {
+                  switch (title) {
+                    case "LABEL 1":
+                      _labelVal1 = boolValue; 
+                      if (_labelVal1 == true) 
+                        lbList.add('1');
+                      if (_labelVal1 == false)
+                        lbList.remove('1');
+                      break;
+                    case "LABEL 2":
+                      _labelVal2 = boolValue;
+                      if (_labelVal2 == true) 
+                        lbList.add('2');
+                      if (_labelVal2 == false)
+                        lbList.remove('2');
+                      break;
+                    case "LABEL 3":
+                      _labelVal3 = boolValue;
+                      if (_labelVal3 == true) 
+                        lbList.add('3');
+                      if (_labelVal3 == false)
+                        lbList.remove('3');
+                      break;
+                    case "LABEL 4":
+                      _labelVal4 = boolValue;
+                      if (_labelVal4 == true) 
+                        lbList.add('4');
+                      if (_labelVal4 == false)
+                        lbList.remove('4');
+                      break;
+                    case "LABEL 5":
+                      _labelVal5 = boolValue;
+                      if (_labelVal5 == true) 
+                        lbList.add('5');
+                      if (_labelVal5 == false)
+                        lbList.remove('5');
+                      break;
+                    case "LABEL 6":
+                      _labelVal6 = boolValue;
+                      if (_labelVal6 == true) 
+                        lbList.add('6');
+                      if (_labelVal6 == false)
+                        lbList.remove('6');
+                      break;
+                    case "LABEL 7":
+                      _labelVal7 = boolValue;
+                      if (_labelVal7 == true) 
+                        lbList.add('7');
+                      if (_labelVal7 == false)
+                        lbList.remove('7');
+                      break;
+                    case "LABEL 8":
+                      _labelVal8 = boolValue;
+                      if (_labelVal8 == true) 
+                        lbList.add('8');
+                      if (_labelVal8 == false)
+                        lbList.remove('8');
+                      break;
+                    case "LABEL 9":
+                      _labelVal9 = boolValue;
+                      if (_labelVal9 == true) 
+                        lbList.add('9');
+                      if (_labelVal9 == false)
+                        lbList.remove('9');
+                      break;
+                    case "LABEL 10":
+                      _labelVal10 = boolValue;
+                      if (_labelVal10 == true) 
+                        lbList.add('10');
+                      if (_labelVal10 == false)
+                          lbList.remove('10');
+                      break;
+                    case "LABEL 11":
+                      _labelVal11 = boolValue;
+                      if (_labelVal11 == true) 
+                        lbList.add('11');
+                      if (_labelVal11 == false)
+                        lbList.remove('11');
+                      break;
+                    case "LABEL 12":
+                      _labelVal12 = boolValue;
+                      if (_labelVal12 == true) 
+                        lbList.add('12');
+                      if (_labelVal12 == false)
+                        lbList.remove('12');
+                      break;
+                    case "LABEL 13":
+                      _labelVal13 = boolValue;
+                      if (_labelVal13 == true) 
+                        lbList.add('13');
+                      if (_labelVal13 == false)
+                        lbList.remove('13');
+                      break;
+                    case "LABEL 14":
+                      _labelVal14 = boolValue;
+                      if (_labelVal14 == true) 
+                        lbList.add('14');
+                      if (_labelVal14 == false)
+                        lbList.remove('14');
+                      break;
+                    case "LABEL 15":
+                      _labelVal15 = boolValue;
+                      if (_labelVal15 == true) 
+                        lbList.add('15');
+                      if (_labelVal15 == false)
+                        lbList.remove('15');
+                      break;
+                    case "LABEL 16":
+                      _labelVal16 = boolValue;
+                      if (_labelVal16 == true) 
+                        lbList.add('16');
+                      if (_labelVal16 == false)
+                        lbList.remove('16');
+                      break;
+                    case "LABEL 17":
+                      _labelVal17 = boolValue;
+                      if (_labelVal17 == true) 
+                        lbList.add('17');
+                      if (_labelVal17 == false)
+                        lbList.remove('17');
+                      break;
+                    case "LABEL 18":
+                      _labelVal18 = boolValue;
+                      if (_labelVal18 == true) 
+                        lbList.add('18');
+                      if (_labelVal18 == false)
+                        lbList.remove('18');
+                      break;
+                    case "LABEL 19":
+                      _labelVal19 = boolValue;
+                      if (_labelVal19 == true) 
+                        lbList.add('19');
+                      if (_labelVal19 == false)
+                        lbList.remove('19');
+                      break;
+                    case "LABEL 20":
+                      _labelVal20 = boolValue;
+                      if (_labelVal20 == true) 
+                        lbList.add('20');
+                      if (_labelVal20 == false)
+                        lbList.remove('20');
+                      break;
+                    case "LABEL 21":
+                      _labelVal21 = boolValue;
+                      if (_labelVal21 == true) 
+                        lbList.add('21');
+                      if (_labelVal21 == false)
+                        lbList.remove('21');
+                      break;
+                    case "LABEL 22":
+                      _labelVal22 = boolValue;
+                      if (_labelVal22 == true) 
+                        lbList.add('22');
+                      if (_labelVal22 == false)
+                        lbList.remove('22');
+                      break;
+                    case "LABEL 23":
+                      _labelVal23 = boolValue;
+                      if (_labelVal23 == true) 
+                        lbList.add('23');
+                      if (_labelVal23 == false)
+                        lbList.remove('23');
+                      break;
+                    case "LABEL 24":
+                      _labelVal24 = boolValue;
+                      if (_labelVal24 == true) 
+                        lbList.add('24');
+                      if (_labelVal24 == false)
+                        lbList.remove('24');
+                      break;
+                    case "LABEL 25":
+                      _labelVal25 = boolValue;
+                      if (_labelVal25 == true) 
+                        lbList.add('25');
+                      if (_labelVal25 == false)
+                        lbList.remove('25');
+                      break;
+                    case "LABEL 26":
+                      _labelVal26 = boolValue;
+                      if (_labelVal26 == true) 
+                        lbList.add('26');
+                      if (_labelVal26 == false)
+                        lbList.remove('26');
+                      break;
+                    case "LABEL 27":
+                      _labelVal27 = boolValue;
+                      if (_labelVal27 == true) 
+                        lbList.add('27');
+                      if (_labelVal27 == false)
+                        lbList.remove('27');
+                      break;
+                    case "LABEL 28":
+                      _labelVal28 = boolValue;
+                      if (_labelVal28 == true) 
+                        lbList.add('28');
+                      if (_labelVal28 == false)
+                        lbList.remove('28');
+                      break;
+                    case "LABEL 29":
+                      _labelVal29 = boolValue;
+                      if (_labelVal29 == true) 
+                        lbList.add('29');
+                      if (_labelVal29 == false)
+                        lbList.remove('29');
+                      break;
+                    case "LABEL 30":
+                      _labelVal30 = boolValue;
+                      if (_labelVal30 == true) 
+                        lbList.add('30');
+                      if (_labelVal30 == false)
+                        lbList.remove('30');
+                      break;
+                    case "LABEL 31":
+                      _labelVal31 = boolValue;
+                      if (_labelVal31 == true) 
+                        lbList.add('31');
+                      if (_labelVal31 == false)
+                        lbList.remove('31');
+                      break;
+                    case "LABEL 32":
+                      _labelVal32 = boolValue;
+                      if (_labelVal32 == true) 
+                        lbList.add('32');
+                      if (_labelVal32 == false)
+                        lbList.remove('32');
+                      break;
+                  
+                    default: { print("Invalid choice"); } 
+                      break; 
+                  }  // switch
+                }); // setstate
+              }, // on change
+            child: Text(title),
+
+            ), 
             Checkbox(
               value: boolValue,
               onChanged: (bool value) {
@@ -660,6 +903,7 @@ class _pickLabels32State extends State<pickLabels32> {
                 }); // setstate
               }, // on change
             ) // checkbox
+
           ], // column widget
         ), // column
       ), // container

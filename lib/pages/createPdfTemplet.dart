@@ -23,13 +23,14 @@ SOFTWARE.
 */
 
 //import pages
+import 'productsPage.dart';
 import 'editPage.dart';
 import 'generateBCode.dart';
 import 'home.dart';
 import 'pickLabels32.dart';
 import 'pickLabels35.dart';
 import 'pickLabels36.dart';
-import 'pickLabels40.dart';
+//import 'pickLabels40.dart';
 import 'pickLabels65.dart';
 
 
@@ -68,17 +69,16 @@ class _createPdfState extends State<createPdf> {
   String productName;
   String indexCode;
   String barcodeType;
-  
-
   FlutterTts flutterTts = new FlutterTts();
   String numLabels;
   String startLabel;
-  List<String> _pdfTemplet = ['40x30mm(4 Across, 8 Down, Total 32)', '37x37mm(5 Across, 7 Down, Total 35)', '48.9x29.6mm(4 Accross, 9 Down, Total 36)', '45.7x25.4mm(4 Across, 10 Down, Total 40)', '38.1x21.2mm(5 across, 13 down, TOTAL 65)']; 
+  List<String> _pdfTemplet = ['40x30mm(4 Across, 8 Down, Total 32)', '37x37mm(5 Across, 7 Down, Total 35)', '48.9x29.6mm(4 Accross, 9 Down, Total 36)', '38.1x21.2mm(5 across, 13 down, TOTAL 65)']; 
   String _selectedPdfTemplet; // Option 2
   List labelsDic = [];
   var amountLabels;
   var startFrom;
   var checkLabels;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,162 +86,157 @@ class _createPdfState extends State<createPdf> {
       appBar: AppBar(
         title: Text('Create pdf templet to print'),
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Text('Barcode:  ${widget.indexCode} BarCode Type: ${widget.barcodeType}'),
-              ), // container
-            ), // expanded
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Text('Choose a pdf templet from drop down menu and enter the fields to choose how many labels and where to start printing from.  Or you can choose the pdf templet and use the pick labels button to choose where on the page you wuld like to print yourself by selecting the checkboxes.'),
-              ), // container
-            ), // expanded
-
-            Expanded(
-              child: Container(
-                child: DropdownButton(
-                  isExpanded: true, //Adding this property, does the magic
-                  hint: Text('Please choose a label templet to print on'), // Not necessary for Option 1
-                  value: _selectedPdfTemplet,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _selectedPdfTemplet = newValue;
-
-                      //numberLabels(_selectedPdfTemplet);
-                    });
-                  },
-                  items: _pdfTemplet.map((pdfTemplet) {
-                    return DropdownMenuItem(
-                      child: new Text(pdfTemplet),
-                      value: pdfTemplet,
-                    );
-                  }).toList(),
-                ),
-              ), // container
-            ), // expanded
-
-            Expanded(
-              child: Container(
-                child: TextFormField(                
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'How many labels would you like to print of this product?',
-                  ), // decoration
-                  enableInteractiveSelection: true,
-                  onChanged: (value) {
-                    setState(() {
-                      numLabels = value;
-                      //valueText = value;
-                    }); // setstate
-                  }, // onChange
-                ), // textFormField
-              ), // container
-            ), // expanded
-            Expanded(
-              child: Container(
-                child: TextFormField(                
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'From which label on the sheet would you like to start printing?',
-                  ), // decoration
-                  enableInteractiveSelection: true,
-                  onChanged: (value) {
-                    setState(() {
-                      startLabel = value;
-                      //valueText = value;
-                    }); // setstate
-                  }, // onChange
-                ), // textFormField
-              ), // container
-            ), // expanded
-
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      child: FloatingActionButton.extended(
-                        tooltip: 'Cancel and return to previous screen',
-                        label: Text('CANCEL'),
-                        heroTag: 'btn1',
-                        onPressed: () {
-                          //Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => scanner(),), (route) => route.isFirst); 
-                        }, // onPress
-                        backgroundColor: Colors.red,
-                        foregroundColor: Colors.white,
-                      ), // floating action button extended
-                    ), //container
-                  ), // expanded
-                  Expanded(
-                    child: Container(
-                      child: FloatingActionButton.extended(
-                        tooltip: 'Create PDF Templet',
-                        label: Text('CREATE PDF'),
-                        heroTag: 'btn2',
-                        onPressed: () {
-                          setState(() {
-                            numberLabels(_selectedPdfTemplet, numLabels, startLabel);
-
-              //Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => homePage(),), (route) => route.isFirst);
-                          }); // setstate
-                        }, // onPress
-                        backgroundColor: Colors.red,
-                        foregroundColor: Colors.white,
-                      ), // floating action button extended
-                    ), //container
-                  ), // expanded
+      body: DefaultTextStyle(
+        child: Container(
+          color: Colors.black,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text('Barcode:  ${widget.indexCode} BarCode Type: ${widget.barcodeType}'),
+                ), // container
+              ), // expanded
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text('Choose a pdf templet from drop down menu and enter the fields to choose how many labels and where to start printing from.  Or you can choose the pdf templet and use the pick labels button to choose where on the page you wuld like to print yourself by selecting the checkboxes.'),
+                ), // container
+              ), // expanded
+              Expanded(
+                child: Container(
+                  child: DropdownButton(
+                    isExpanded: true, //Adding this property, does the magic
+                    hint: Text('Please choose a label templet to print on'), // Not necessary for Option 1
+                    value: _selectedPdfTemplet,
+                    onChanged: (newValue) {
+                      setState(() {
+                        _selectedPdfTemplet = newValue;
+                      });
+                    },
+                    items: _pdfTemplet.map((pdfTemplet) {
+                      return DropdownMenuItem(
+                        child: new Text(pdfTemplet),
+                        value: pdfTemplet,
+                      );
+                    }).toList(),
+                  ),
+                ), // container
+              ), // expanded
+              Expanded(
+                child: Container(
+                  child: TextFormField(                
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      labelText: 'How many labels would you like to print of this product?',
+                    ), // decoration
+                    enableInteractiveSelection: true,
+                    onChanged: (value) {
+                      setState(() {
+                        numLabels = value;
+                      }); // setstate
+                    }, // onChange
+                  ), // textFormField
+                ), // container
+              ), // expanded
+              Expanded(
+                child: Container(
+                  child: TextFormField(                
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      labelText: 'From which label on the sheet would you like to start printing?',
+                    ), // decoration
+                    enableInteractiveSelection: true,
+                    onChanged: (value) {
+                      setState(() {
+                        startLabel = value;
+                      }); // setstate
+                    }, // onChange
+                  ), // textFormField
+                ), // container
+              ), // expanded
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(
+                        child: FloatingActionButton.extended(
+                          tooltip: 'Cancel and return to products page',
+                          label: Text('CANCEL'),
+                          heroTag: 'cancel',
+                          onPressed: () {
+                            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => productList(),), (route) => route.isFirst); 
+                          }, // onPress
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                        ), // floating action button extended
+                      ), //container
+                    ), // expanded
+                    Expanded(
+                      child: Container(
+                        child: FloatingActionButton.extended(
+                          tooltip: 'Create PDF Templet',
+                          label: Text('CREATE PDF'),
+                          heroTag: 'createPdf',
+                          onPressed: () {
+                            setState(() {
+                              numberLabels(_selectedPdfTemplet, numLabels, startLabel);
+                            }); // setstate
+                          }, // onPress
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                        ), // floating action button extended
+                      ), //container
+                    ), // expanded
                     //choose labels and generate pdf
-                    FloatingActionButton.extended(
-                      tooltip: 'Pick labels to print',
-                      label: Text('PICK LABELS'),
-                      heroTag: 'btn3',
-                      onPressed: () {
-  productName = widget.productName;
-  indexCode = widget.indexCode;
-  barcodeType = widget.barcodeType;
+                        FloatingActionButton.extended(
+                          tooltip: 'Pick labels to print',
+                          label: Text('PICK LABELS'),
+                          heroTag: 'pickLabels',
+                          onPressed: () {
+                            productName = widget.productName;
+                            indexCode = widget.indexCode;
+                            barcodeType = widget.barcodeType;
                             switch(_selectedPdfTemplet) {
                               case '40x30mm(4 Across, 8 Down, Total 32)': {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) =>                             pickLabels32(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
-                            );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) =>                             pickLabels32(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
+                                );
                               }
                               break;
                               case '37x37mm(5 Across, 7 Down, Total 35)': {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) =>                             pickLabels35(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
-                            );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) =>                             pickLabels35(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
+                                );
                               }
                               break;
                               case '48.9x29.6mm(4 Accross, 9 Down, Total 36)': {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) =>                             pickLabels36(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
-                            );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) =>                             pickLabels36(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
+                                );
                               }
                               break;
+/*
                               case '45.7x25.4mm(4 Across, 10 Down, Total 40)': {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) =>                             pickLabels40(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
-                            );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) =>                             pickLabels40(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
+                                );
                               }
                               break;
+*/
                               case '38.1x21.2mm(5 across, 13 down, TOTAL 65)': {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) =>                             pickLabels65(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
-                            );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) =>                             pickLabels65(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
+                                );
                               }
                               break;
 
@@ -250,18 +245,20 @@ class _createPdfState extends State<createPdf> {
                               }
                               break;
                             }
-                      }, // on press
-                      backgroundColor: Colors.red,
-                      foregroundColor: Colors.white,
-                    ), // floating action button extended
+                          }, // on press
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                        ), // floating action button extended
 
-                ] // row widget
-              ), // row
-            ), // container
+                  ] // row widget
+                ), // row
+              ), // container
 
-          ] // column widget
-        ), // column
-      ), // body container
+            ] // column widget
+          ), // column
+        ), //  container
+        style: TextStyle(color: Colors.white),
+      ), // body DefaultTextStyle
     ); //scaffold
   }  // build widget
 
@@ -318,6 +315,8 @@ class _createPdfState extends State<createPdf> {
         }
         break;
 
+
+/*
       case '45.7x25.4mm(4 Across, 10 Down, Total 40)': {
         numLabels?.isEmpty ?? true ? flutterTts.speak('Enter a number between 1 and 40 to print on.') : startLabel?.isEmpty ?? true ? flutterTts.speak('Enter a number between 1 and 40 to start printing from.') : flutterTts.speak('Creating pdf templet.');
 
@@ -331,10 +330,9 @@ class _createPdfState extends State<createPdf> {
           _generatePdf40();
           Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => homePage(),), (route) => route.isFirst);
         }
-
-      }
+    }
         break;
-
+*/
       case '38.1x21.2mm(5 across, 13 down, TOTAL 65)': {
         numLabels?.isEmpty ?? true ? flutterTts.speak('Enter a number between 1 and 65 to print on.') : startLabel?.isEmpty ?? true ? flutterTts.speak('Enter a number between 1 and 65 to start printing from.') : flutterTts.speak('Creating pdf templet.');
         amountLabels = int. parse('${numLabels}');
@@ -358,19 +356,15 @@ class _createPdfState extends State<createPdf> {
           break; 
 
     }
-    }
+  }
 
   addToList(var numberOfLabels, startFromLabel) {
     labelsDic.clear (); 
     int nLabels = numberOfLabels + startFromLabel;
     for (var i = startFromLabel; i < nLabels; i++) {
-
       labelsDic.add(i);
-    
     }
-    print(labelsDic);
-
-
+    //print(labelsDic);
   }
  
   void unFocus() {
@@ -706,7 +700,7 @@ class _createPdfState extends State<createPdf> {
         height: (25.4 * PdfPageFormat.mm),
       ); //container      
   }
-
+/*
   //40
   Future<Uint8List> _generatePdf40() async {
     final doc = pw.Document();
@@ -831,7 +825,7 @@ class _createPdfState extends State<createPdf> {
         height: (21.2 * PdfPageFormat.mm),
       ); //container      
   }
-
+*/
 
   //65
   Future<Uint8List> _generatePdf65() async {
@@ -1097,4 +1091,4 @@ class _createPdfState extends State<createPdf> {
   }
 
 
-}
+} // class

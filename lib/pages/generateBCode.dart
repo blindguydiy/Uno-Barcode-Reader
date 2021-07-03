@@ -68,103 +68,107 @@ class _newGenState extends State<newGen> {
       appBar: AppBar(
         title: Text('Generate new product barcode'),
       ),
-      body: Container(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Text('Create a new barcode for an item to be identified.  Enter the item name and a 4 digit code for a barcode.'),
-              ), // container
-              Container(
-                child: TextFormField(                
-                  decoration: InputDecoration(
-                    labelText: 'Item Name',
-                  ), // decoration
-                  enableInteractiveSelection: true,
-                  onChanged: (value) {
-                    setState(() {
-                      nameText = value;
-                    }); // setstate
-                  }, // onChange
-                ), // textFormField
-              ), // container
-              Container(
-                child: TextFormField(
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(4),
-                  ],
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Enter a 4 digit barcode',
-                  ), //                 decoration
-                  enableInteractiveSelection: true,
-                  onChanged: (value) {
-                    setState(() {
-                      valueText = value;
-                    }); // setstate
-                  }, // onChange
-                ), // textFormField
-              ), // container
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    //Cancel button
-                    FloatingActionButton.extended(
-                      tooltip: 'Cancel and go back to home screen',
-                      label: Text('CANCEL'),
-                      heroTag: 'btn1',
-                      onPressed: () {
-                        Navigator.of(context, rootNavigator: true).pop();
-                      }, // onPress
-                      backgroundColor: Colors.red,
-                      foregroundColor: Colors.white,
-                    ), // floating action button extended
-                    //save button
-                    FloatingActionButton.extended(
-                      tooltip: 'Save item to device',
-                      label: Text('SAVE'),
-                      heroTag: 'btn2',
-                      onPressed: () {
-                        setState(() {
+      body: DefaultTextStyle(
+        child:  Container(
+          color: Colors.black,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text('Create a new barcode for an item to be identified.  Enter the item name and a 4 digit code for a barcode.'),
+                ), // container
+                Container(
+                  child: TextFormField(                
+                    decoration: InputDecoration(
+                      labelText: 'Item Name',
+                    ), // decoration
+                    enableInteractiveSelection: true,
+                    onChanged: (value) {
+                      setState(() {
+                        nameText = value;
+                      }); // setstate
+                    }, // onChange
+                  ), // textFormField
+                ), // container
+                Container(
+                  child: TextFormField(
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(4),
+                    ],
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      labelText: 'Enter a 4 digit barcode',
+                    ), //                 decoration
+                    enableInteractiveSelection: true,
+                    onChanged: (value) {
+                      setState(() {
+                        valueText = value;
+                      }); // setstate
+                    }, // onChange
+                  ), // textFormField
+                ), // container
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      //Cancel button
+                      FloatingActionButton.extended(
+                        tooltip: 'Cancel and go back to home screen',
+                        label: Text('CANCEL'),
+                        heroTag: 'cancel',
+                        onPressed: () {
+                          Navigator.of(context, rootNavigator: true).pop();
+                        }, // onPress
+                        backgroundColor: Colors.red,
+                        foregroundColor: Colors.white,
+                      ), // floating action button extended
+                      //save button
+                      FloatingActionButton.extended(
+                        tooltip: 'Save item to device',
+                        label: Text('SAVE'),
+                        heroTag: 'save',
+                        onPressed: () {
+                          setState(() {
+                            productName = nameText;
+                            indexCode = valueText;
+                            productName == null ? flutterTts.speak('Enter Name') : productName.length < 1 ? flutterTts.speak('Enter Name') : indexCode == null ? flutterTts.speak('Enter a 4 digit code') : indexCode.length != 4 ? flutterTts.speak('Enter 5 digits') : saveHive(indexCode, productName, indexCode, barcodeType);
+                            unFocus();
+                            Navigator.of(context, rootNavigator: true).pop();
+                          }); // setstate
+                        }, // onPress
+                        backgroundColor: Colors.red,
+                        foregroundColor: Colors.white,
+                      ), // floating action button extended
+                      //choose labels and generate pdf
+                      FloatingActionButton.extended(
+                        tooltip: 'Create pdf templet to print labels',
+                        label: Text('CREATE PDF'),
+                        heroTag: 'createPdf',
+                        onPressed: () {
                           productName = nameText;
                           indexCode = valueText;
-                          productName == null ? flutterTts.speak('Enter Name') : productName.length < 1 ? flutterTts.speak('Enter Name') : indexCode == null ? flutterTts.speak('Enter a 4 digit code') : indexCode.length != 4 ? flutterTts.speak('Enter 5 digits') : saveHive(indexCode, productName, indexCode, barcodeType);
-                          unFocus();
-                          Navigator.of(context, rootNavigator: true).pop();
-                        }); // setstate
-                      }, // onPress
-                      backgroundColor: Colors.red,
-                      foregroundColor: Colors.white,
-                    ), // floating action button extended
-                    //choose labels and generate pdf
-                    FloatingActionButton.extended(
-                      tooltip: 'Pick labels to print',
-                      label: Text('PICK LABELS'),
-                      heroTag: 'btn3',
-                      onPressed: () {
-                        productName = nameText;
-                        indexCode = valueText;
-                        productName == null ? flutterTts.speak('Enter Name') : productName.length < 1 ? flutterTts.speak('Enter Name') : indexCode == null ? flutterTts.speak('Enter a 4 digit code') : indexCode.length != 4 ? flutterTts.speak('Enter 5 digits') : Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) =>                             createPdf(productName: productName, indexCode: indexCode, barcodeType: barcodeType)),
+                          productName == null ? flutterTts.speak('Enter Name') : productName.length < 1 ? flutterTts.speak('Enter Name') : indexCode == null ? flutterTts.speak('Enter a 4 digit code') : indexCode.length != 4 ? flutterTts.speak('Enter 5 digits') : Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) =>                             createPdf(productName: productName, indexCode: indexCode, barcodeType: barcodeType)),
                           );
-                        saveHive(indexCode, productName, indexCode, barcodeType);
-                      }, // on press
-                      backgroundColor: Colors.red,
-                      foregroundColor: Colors.white,
-                    ), // floating action button extended
-                  ] // row widget
-                ), // row
-              ), // container
-            ] // column
-          ), // column
-        ), // center
-      ), // body container
+                          saveHive(indexCode, productName, indexCode, barcodeType);
+                        }, // on press
+                        backgroundColor: Colors.red,
+                        foregroundColor: Colors.white,
+                      ), // floating action button extended
+                    ] // row widget
+                  ), // row
+                ), // container
+              ] // column
+            ), // column
+          ), // center
+        ), // container
+        style: TextStyle(color: Colors.white),
+      ), // defaultTextStyle
     );  // scaffold
   } // build widget
 

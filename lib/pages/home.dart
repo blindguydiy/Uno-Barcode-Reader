@@ -54,10 +54,11 @@ class homePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+
                 FloatingActionButton.extended(
-                  tooltip: 'Scann barcodes/qr codes',
+                  tooltip: 'Scan barcodes/qr codes',
                   label: Text('SCAN'),
-                  heroTag: 'btn1',
+                  heroTag: 'scan',
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -68,9 +69,9 @@ class homePage extends StatelessWidget {
                   foregroundColor: Colors.white,
                 ), // floating action button extended
                 FloatingActionButton.extended(
-                  tooltip: 'Generate a new barcode for personal use, save and print',
+                  tooltip: 'Generate a new barcode for personal use',
                   label: Text('GENERATE'),
-                  heroTag: 'btn2',
+                  heroTag: 'generate',
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -81,9 +82,9 @@ class homePage extends StatelessWidget {
                   foregroundColor: Colors.white,
                 ), // floating action button extended
                 FloatingActionButton.extended(
-                  tooltip: 'Product list showing all saved items, minipulate options, edit, delete, print ect.',
+                  tooltip: 'Product list showing all saved items, manipulate options, edit, delete, print ect.',
                   label: Text('PRODUCT LIST'),
-                  heroTag: 'btn3',
+                  heroTag: 'productList',
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -93,10 +94,11 @@ class homePage extends StatelessWidget {
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
                 ), // floating action button extended
+
                 FloatingActionButton.extended(
                   tooltip: 'User guide to explain how to use and licenses.',
-                  label: Text('User Guide'),
-                  heroTag: 'btn4',
+                  label: Text('USER GUIDE'),
+                  heroTag: 'userGuide',
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -107,9 +109,9 @@ class homePage extends StatelessWidget {
                   foregroundColor: Colors.white,
                 ), // floating action button extended
                 FloatingActionButton.extended(
-                  tooltip: 'About the UnoAccessibility suite, other apps in the suite, contact details.',
-                  label: Text('ABOUT OTHER APPS'),
-                  heroTag: 'btn5',
+                  tooltip: 'About the Uno Accessibility suite, other apps in the suite, contact details.',
+                  label: Text('ABOUT'),
+                  heroTag: 'about',
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -119,6 +121,7 @@ class homePage extends StatelessWidget {
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
                 ), // floating action button extended
+
               ] // column widget
             ), // column (fab
           ), // padding

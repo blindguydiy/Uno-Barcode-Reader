@@ -15,6 +15,11 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:url_launcher/url_launcher.dart';
+//import 'package:html/parser.dart' show parse;
+//import 'package:http/http.dart' as http;
+//import 'package:html/dom.dart' as dom;
+
 
 const flashOn = 'FLASH ON';
 const flashOff = 'FLASH OFF';
@@ -37,6 +42,13 @@ class _scannerState extends State<scanner> {
   var flashState = flashOff;
   var ite;
   var barcodeType;
+  FlutterTts _flutterTts;
+  bool isPlaying = false;
+ 
+  void initState() {
+    super.initState();
+    initializeTts();
+  }
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -67,10 +79,10 @@ class _scannerState extends State<scanner> {
             flex: 1,
             child: Center(
               child: (result != null)
-                  ? Text(
-                      'Barcode Type: ${describeEnum(result.format)}   Data: ${result.code}')
-                  : Text('Scan a code'),
-            ),
+                ? Text(
+                  'Barcode Type: ${describeEnum(result.format)}   Data: ${result.code}')
+                : Text('Scan a code'),
+            ), //center
           ), // expanded
           Container(
             child: Row(
@@ -94,8 +106,7 @@ class _scannerState extends State<scanner> {
                         }
                       }
                     },
-                    child:
-                        Text(flashState, style: TextStyle(fontSize: 20)),
+                    child: Text(flashState, style: TextStyle(fontSize: 20)),
                   ),
                 ),
                 Container(
@@ -139,8 +150,7 @@ class _scannerState extends State<scanner> {
     controller.toggleFlash();
   }
 
-  findBarCode() {
-  FlutterTts flutterTts = new FlutterTts();
+  findBarCode() async {
     //see if barcode is detected
     if (result != null) 
       barcodeType = '${describeEnum(result.format)}';
@@ -149,21 +159,78 @@ class _scannerState extends State<scanner> {
       var _product = box.get(ite);
       //see if detected barcode is in box
       if (_product != null)
-
-        flutterTts.speak(_product.itemName);
-        //print('speak');
+await _speak(_product.itemName);
       else 
-        //controller.pauseCamera();
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) =>                             adItem(ite: ite, barcodeType: barcodeType)),
         );
-        //controller.pauseCamera();
   }    
 
   @override
   void dispose() {
     controller?.dispose();
+    _flutterTts.stop();
+
     super.dispose();
   }
-}
+
+  void searchWeb() async {
+    //const url = https://www.google.com/search?q=query+goes+here
+    var url = 'https://barcodesdatabase.org/barcode/5449000009067'; //'https://www.bing.com/search?q="barcode: ${widget.indexCode}"';
+    if (await canLaunch(url)) {
+      await launch(url, forceWebView: true);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+
+  initializeTts() {
+    _flutterTts = FlutterTts();
+
+    _flutterTts.setStartHandler(() {
+      setState(() {
+        isPlaying = true;
+      });
+    });
+
+    _flutterTts.setCompletionHandler(() {
+      setState(() {
+        isPlaying = false;
+      });
+    });
+
+    _flutterTts.setErrorHandler((err) {
+      setState(() {
+        print("error occurred: " + err);
+        isPlaying = false;
+      });
+    });
+  }
+
+  Future _speak(String text) async {
+    await _flutterTts.awaitSpeakCompletion(true);
+
+    if (text != null && text.isNotEmpty) {
+      var result = await _flutterTts.speak(text);
+      if (result == 1)
+        setState(() {
+          isPlaying = true;
+        });
+    }
+  }
+
+  Future _stop() async {
+    var result = await _flutterTts.stop();
+    if (result == 1)
+      setState(() {
+        isPlaying = false;
+      });
+  }
+
+  void setTtsLanguage() async {
+    await _flutterTts.setLanguage("en-US");
+  }
+
+} // class

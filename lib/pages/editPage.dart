@@ -23,7 +23,7 @@ SOFTWARE.
 */
 
 //import pages
-//import 'createPdfTemplet.dart';
+import 'createPdfTemplet.dart';
 import 'productsPage.dart';
 
 //import packages
@@ -77,138 +77,138 @@ class _editItemState extends State<editItem> {
       appBar: AppBar(
         title: Text('Edit, Delete or print Item'),
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Text('Barcode:  ${widget.indexCode} BarCode Type: ${widget.barcodeType}'),
-              ), // container
-            ), // expanded
-            Expanded(
-              child: Container(
-                child: TextFormField(
-                  initialValue: '${widget.productName}',
-                  enableInteractiveSelection: true,
-                  onChanged: (value) {
-                    setState(() {
-                      valueText = value;
-                    }); // setstate
-                  }, // onChange
-                ), // textFormField
-              ), // container
-            ), // expanded
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: <Widget> [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      FloatingActionButton.extended(
-                        tooltip: 'Cancel and go back to product list screen',
-                        label: Text('CANCEL'),
-                        heroTag: 'cancel',
-                        onPressed: () {
-              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => productList(),), (route) => route.isFirst); 
-
-                          //Navigator.of(context, rootNavigator: true).pop();
-                        }, // onPress
-                        backgroundColor: Colors.red,
-                        foregroundColor: Colors.white,
-                      ), // floating action button extended
-                      FloatingActionButton.extended(
-                        tooltip: 'Save item to device',
-                        label: Text('SAVE'),
-                        heroTag: 'save',
-                        onPressed: () {
-                          setState(() {
-                            codeDialog = valueText;
-                            saveHive(widget.indexCode, codeDialog, widget.indexCode, widget.barcodeType);
-                            unFocus();
-                            Navigator.of(context, rootNavigator: true).pop();
-                          }); // setstate
-                        }, // on press
-                        backgroundColor: Colors.red,
-                        foregroundColor: Colors.white,
-                      ), // floating action button extended
-                      FloatingActionButton.extended(
-                        tooltip: 'Search the web for the product with the barcode detected',
-                        label: Text('SEARCH WEB'),
-                        heroTag: 'searchWeb',
-                        onPressed: () {
-                          setState(() {
-                            searchWeb();
-                          }); // setstate
-                        }, // on press
-                        backgroundColor: Colors.red,
-                        foregroundColor: Colors.white,
-                      ), // floating action button extended
-                    ] // row widget
-                  ), // row
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(
-                        child: FloatingActionButton.extended(
-                          tooltip: 'Delete item from device',
-                          label: Text('DELETE ITEM'),
-                          heroTag: 'deleteItem',
+      body: DefaultTextStyle(
+        child: Container(
+          color: Colors.black,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text('Barcode:  ${widget.indexCode} BarCode Type: ${widget.barcodeType}'),
+                ), // container
+              ), // expanded
+              Expanded(
+                child: Container(
+                  child: TextFormField(
+                    initialValue: '${widget.productName}',
+                    enableInteractiveSelection: true,
+                    onChanged: (value) {
+                      setState(() {
+                        valueText = value;
+                      }); // setstate
+                    }, // onChange
+                  ), // textFormField
+                ), // container
+              ), // expanded
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: <Widget> [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        FloatingActionButton.extended(
+                          tooltip: 'Cancel and go back to product list screen',
+                          label: Text('CANCEL'),
+                          heroTag: 'cancel',
+                          onPressed: () {
+                            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => productList(),), (route) => route.isFirst); 
+                          }, // onPress
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                        ), // floating action button extended
+                        FloatingActionButton.extended(
+                          tooltip: 'Save item to device',
+                          label: Text('SAVE'),
+                          heroTag: 'save',
                           onPressed: () {
                             setState(() {
-                              deleteItem(indexCode); //Index);
+                              codeDialog = valueText;
+                              saveHive(widget.indexCode, codeDialog, widget.indexCode, widget.barcodeType);
+                              unFocus();
                               Navigator.of(context, rootNavigator: true).pop();
                             }); // setstate
                           }, // on press
                           backgroundColor: Colors.red,
                           foregroundColor: Colors.white,
                         ), // floating action button extended
-                      ), // expanded
-                      Expanded(
-                        child: FloatingActionButton.extended(
-                          tooltip: 'Delete all items from device',
-                          label: Text('CLEAR LIST'),
-                          heroTag: 'clearList',
+                        FloatingActionButton.extended(
+                          tooltip: 'Search the web for the product with the barcode detected',
+                          label: Text('SEARCH WEB'),
+                          heroTag: 'searchWeb',
                           onPressed: () {
                             setState(() {
-                              clearList();
-                              Navigator.of(context, rootNavigator: true).pop();
+                              searchWeb();
                             }); // setstate
                           }, // on press
                           backgroundColor: Colors.red,
                           foregroundColor: Colors.white,
                         ), // floating action button extended
-                      ), // expanded
-                      Expanded(
-                        child: FloatingActionButton.extended(
-                          tooltip: 'Create pdf templet to print on',
-                          label: Text('CREATE PDF'),
-                          heroTag: 'createPdf',
-                          onPressed: () {
-/*
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) =>                             createPdf(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
-                          );
-*/
-                          }, // on press
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                        ), // floating action button extended
-                      ), // expanded
-                    ] // row widget
-                  ), //row
-                ] // column widget
-              ), //column
-            ), // container
-          ] //column widget
-        ), // column
-      ), // body container
+                      ] // row widget
+                    ), // row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          child: FloatingActionButton.extended(
+                            tooltip: 'Delete item from device',
+                            label: Text('DELETE ITEM'),
+                            heroTag: 'deleteItem',
+                            onPressed: () {
+                              setState(() {
+                                deleteItem(indexCode); //Index);
+                                Navigator.of(context, rootNavigator: true).pop();
+                              }); // setstate
+                            }, // on press
+                            backgroundColor: Colors.red,
+                            foregroundColor: Colors.white,
+                          ), // floating action button extended
+                        ), // expanded
+                        Expanded(
+                          child: FloatingActionButton.extended(
+                            tooltip: 'Delete all items from device',
+                            label: Text('CLEAR LIST'),
+                            heroTag: 'clearList',
+                            onPressed: () {
+                              setState(() {
+                                clearList();
+                                Navigator.of(context, rootNavigator: true).pop();
+                              }); // setstate
+                            }, // on press
+                            backgroundColor: Colors.red,
+                            foregroundColor: Colors.white,
+                          ), // floating action button extended
+                        ), // expanded
+                        Expanded(
+                          child: FloatingActionButton.extended(
+                            tooltip: 'Create pdf templet to print on',
+                            label: Text('CREATE PDF'),
+                            heroTag: 'createPdf',
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) =>                             createPdf(indexCode: indexCode, barcodeType: barcodeType, productName: productName)),
+                              );
+                            }, // on press
+                            backgroundColor: Colors.red,
+                            foregroundColor: Colors.white,
+                          ), // floating action button extended
+                        ), // expanded
+                      ] // row widget
+                    ), //row
+                  ] // column widget
+                ), //column
+              ), // container
+            ] //column widget
+          ), // column
+        ), // container
+        style: TextStyle(color: Colors.white),
+      ), // body defaulttextstyle
     ); // scaffold 
   } // build widget
 

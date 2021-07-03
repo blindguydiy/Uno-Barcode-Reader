@@ -15,8 +15,8 @@ import 'package:share_plus/share_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-
 class productList extends StatefulWidget {
+
   productList({Key key,}) : super(key: key);
 
   @override
@@ -70,18 +70,23 @@ class _productListState extends State<productList> {
             tooltip: 'Share backup file',
             onPressed: () { 
               shareBackup();
-              //Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => homePage(),), (route) => route.isFirst); 
             }, // on press
           ), // icon button
         ], // action
       ), // appbar
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: _buildListView()
-          ), // expanded
-        ], // column widget
-      ), // body column
+      body: //DefaultTextStyle(
+        //child: Container(
+          //color: Colors.black,
+          Column(
+            children: <Widget>[
+              Expanded(
+                child: _buildListView()
+              ), // expanded
+            ], // column widget
+          ), // column
+        //), // container
+        //style: TextStyle(color: Colors.white),
+      //), // body defaulttextstyle
     ); // scaffold
   }  // widget build
 
@@ -118,12 +123,11 @@ class _productListState extends State<productList> {
                 } // on tap
               ); // return listile
             }, // item builder
-  );        
+          );        
         }
       }, // builder
     ); // return ValueListenableBuilder
   }
-
 
   Future<File> _importBackup() async {
     //permissions for more than one action
@@ -136,9 +140,7 @@ class _productListState extends State<productList> {
       ].request();
       //print(statuses[Permission.storage]); // it should print PermissionStatus.granted
     }
-
     var directory = await Directory('/storage/emulated/0/unoBarcodeReader');
-    if (File('${directory.path}/backup_barcode.json').existsSync()) {
     //open external storageOpen the file with 
     File jsonFile = await File("${directory.path}/backup_barcode.json");
     List<dynamic> dataTest = json.decode(jsonFile.readAsStringSync());
@@ -148,9 +150,6 @@ class _productListState extends State<productList> {
       indexCode = i['barcode'];
       barcodeType = i['bctype'];
       saveHive(indexCode, productName, indexCode, barcodeType);
-    }
-    } else {
-      _speak('No backup file available.  You first have to create or get a copy of a backup file');
     }
   }
 
@@ -168,10 +167,10 @@ class _productListState extends State<productList> {
 
     for (int i = 0; i < index; i++) {
       var _product = box.getAt(count);
-exportData.add({'item_name' : _product.itemName, 'barcode' : _product.barCode, 'bctype' : _product.bcType});
+      exportData.add({'item_name' : _product.itemName, 'barcode' : _product.barCode, 'bctype' : _product.bcType});
       count++;
     }
-    print(exportData);
+    //print(exportData);
     var status = await Permission.storage.status;
     if (status.isUndetermined) {
       // You can request multiple permissions at once.
@@ -180,7 +179,6 @@ exportData.add({'item_name' : _product.itemName, 'barcode' : _product.barCode, '
         //Permission.camera,
       ].request();
       //print(statuses[Permission.storage]); // it should print PermissionStatus.granted
-  
     }
     var directory = await Directory('/storage/emulated/0/unoBarcodeReader').create(recursive: true);
 
@@ -189,8 +187,7 @@ exportData.add({'item_name' : _product.itemName, 'barcode' : _product.barCode, '
     try {
       /// barcodeBox is the [Box] object from the Hive package, usually exposed inside a [ValueListenableBuilder] or via [Hive.box()]
       backupFile = await backupFile.writeAsString(jsonEncode(exportData));
-      _speak('Exporting backup file to: ${directory.path}/backup_barcode.json ');
-
+      await _speak('Exporting backup file to: ${directory.path}/backup_barcode.json ');
       return backupFile;
     } catch (e) {
       // TODO: handle exception
@@ -203,10 +200,10 @@ exportData.add({'item_name' : _product.itemName, 'barcode' : _product.barCode, '
     var status = await Permission.storage.status;
     if (status.isUndetermined) {
       // You can request multiple permissions at once.
-        Map<Permission, PermissionStatus> statuses = await [
-          Permission.storage,
-          //Permission.camera,
-        ].request();
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.storage,
+        //Permission.camera,
+      ].request();
       //print(statuses[Permission.storage]); // it should print PermissionStatus.granted
     }
 

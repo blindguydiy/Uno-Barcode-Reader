@@ -154,152 +154,156 @@ class _pickLabels65State extends State<pickLabels65> {
           ), // icon button
         ], // action
       ), // appbar
-      body: Container(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget> [
-                Container(
-                  child: Text('Pick on which labels you would like to print your barcodes. When finished choosing which labels should be printed on use the share button above on the appBar to generate an a4 label sheet.'),
-                ), // container
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 1', _labelVal1),
-                    checkbox('LABEL 2', _labelVal2),
-                    checkbox('LABEL 3', _labelVal3),
-                    checkbox('LABEL 4', _labelVal4),
-                    checkbox('LABEL 5', _labelVal5),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 6', _labelVal6),
-                    checkbox('LABEL 7', _labelVal7),
-                    checkbox('LABEL 8', _labelVal8),
-                    checkbox('LABEL 9', _labelVal9),
-                    checkbox('LABEL 10', _labelVal10),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 11', _labelVal11),
-                    checkbox('LABEL 12', _labelVal12),
-                    checkbox('LABEL 13', _labelVal13),
-                    checkbox('LABEL 14', _labelVal14),
-                    checkbox('LABEL 15', _labelVal15),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 16', _labelVal16),
-                    checkbox('LABEL 17', _labelVal17),
-                    checkbox('LABEL 18', _labelVal18),
-                    checkbox('LABEL 19', _labelVal19),
-                    checkbox('LABEL 20', _labelVal20),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 21', _labelVal21),
-                    checkbox('LABEL 22', _labelVal22),
-                    checkbox('LABEL 23', _labelVal23),
-                    checkbox('LABEL 24', _labelVal24),
-                    checkbox('LABEL 25', _labelVal25),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 26', _labelVal26),
-                    checkbox('LABEL 27', _labelVal27),
-                    checkbox('LABEL 28', _labelVal28),
-                    checkbox('LABEL 29', _labelVal29),
-                    checkbox('LABEL 30', _labelVal30),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 31', _labelVal31),
-                    checkbox('LABEL 32', _labelVal32),
-                    checkbox('LABEL 33', _labelVal33),
-                    checkbox('LABEL 34', _labelVal34),
-                    checkbox('LABEL 35', _labelVal35),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 36', _labelVal36),
-                    checkbox('LABEL 37', _labelVal37),
-                    checkbox('LABEL 38', _labelVal38),
-                    checkbox('LABEL 39', _labelVal39),
-                    checkbox('LABEL 40', _labelVal40),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 41', _labelVal41),
-                    checkbox('LABEL 42', _labelVal42),
-                    checkbox('LABEL 43', _labelVal43),
-                    checkbox('LABEL 44', _labelVal44),
-                    checkbox('LABEL 45', _labelVal45),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 46', _labelVal46),
-                    checkbox('LABEL 47', _labelVal47),
-                    checkbox('LABEL 48', _labelVal48),
-                    checkbox('LABEL 49', _labelVal49),
-                    checkbox('LABEL 50', _labelVal50),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 51', _labelVal51),
-                    checkbox('LABEL 52', _labelVal52),
-                    checkbox('LABEL 53', _labelVal53),
-                    checkbox('LABEL 54', _labelVal54),
-                    checkbox('LABEL 55', _labelVal55),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 56', _labelVal56),
-                    checkbox('LABEL 57', _labelVal57),
-                    checkbox('LABEL 58', _labelVal58),
-                    checkbox('LABEL 59', _labelVal59),
-                    checkbox('LABEL 60', _labelVal60),
-                  ]  // row widget
-                ), // row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    checkbox('LABEL 61', _labelVal61),
-                    checkbox('LABEL 62', _labelVal62),
-                    checkbox('LABEL 63', _labelVal63),
-                    checkbox('LABEL 64', _labelVal64),
-                    checkbox('LABEL 65', _labelVal65),
-                  ]  // row widget 18 spaces
-                ), // row 16 spaces
-              ],  // column widget
-            ), //column
-          ), // padding
-        ),  //singlescroll
-      ), // body container
+      body: DefaultTextStyle(
+        child: Container(
+          color: Colors.black,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget> [
+                  Container(
+                    child: Text('Pick on which labels you would like to print your barcodes. When finished choosing which labels should be printed on use the share button above on the appBar to generate an a4 label sheet.'),
+                  ), // container
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 1', _labelVal1),
+                      checkbox('LABEL 2', _labelVal2),
+                      checkbox('LABEL 3', _labelVal3),
+                      checkbox('LABEL 4', _labelVal4),
+                      checkbox('LABEL 5', _labelVal5),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 6', _labelVal6),
+                      checkbox('LABEL 7', _labelVal7),
+                      checkbox('LABEL 8', _labelVal8),
+                      checkbox('LABEL 9', _labelVal9),
+                      checkbox('LABEL 10', _labelVal10),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 11', _labelVal11),
+                      checkbox('LABEL 12', _labelVal12),
+                      checkbox('LABEL 13', _labelVal13),
+                      checkbox('LABEL 14', _labelVal14),
+                      checkbox('LABEL 15', _labelVal15),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 16', _labelVal16),
+                      checkbox('LABEL 17', _labelVal17),
+                      checkbox('LABEL 18', _labelVal18),
+                      checkbox('LABEL 19', _labelVal19),
+                      checkbox('LABEL 20', _labelVal20),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 21', _labelVal21),
+                      checkbox('LABEL 22', _labelVal22),
+                      checkbox('LABEL 23', _labelVal23),
+                      checkbox('LABEL 24', _labelVal24),
+                      checkbox('LABEL 25', _labelVal25),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 26', _labelVal26),
+                      checkbox('LABEL 27', _labelVal27),
+                      checkbox('LABEL 28', _labelVal28),
+                      checkbox('LABEL 29', _labelVal29),
+                      checkbox('LABEL 30', _labelVal30),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 31', _labelVal31),
+                      checkbox('LABEL 32', _labelVal32),
+                      checkbox('LABEL 33', _labelVal33),
+                      checkbox('LABEL 34', _labelVal34),
+                      checkbox('LABEL 35', _labelVal35),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 36', _labelVal36),
+                      checkbox('LABEL 37', _labelVal37),
+                      checkbox('LABEL 38', _labelVal38),
+                      checkbox('LABEL 39', _labelVal39),
+                      checkbox('LABEL 40', _labelVal40),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 41', _labelVal41),
+                      checkbox('LABEL 42', _labelVal42),
+                      checkbox('LABEL 43', _labelVal43),
+                      checkbox('LABEL 44', _labelVal44),
+                      checkbox('LABEL 45', _labelVal45),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 46', _labelVal46),
+                      checkbox('LABEL 47', _labelVal47),
+                      checkbox('LABEL 48', _labelVal48),
+                      checkbox('LABEL 49', _labelVal49),
+                      checkbox('LABEL 50', _labelVal50),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 51', _labelVal51),
+                      checkbox('LABEL 52', _labelVal52),
+                      checkbox('LABEL 53', _labelVal53),
+                      checkbox('LABEL 54', _labelVal54),
+                      checkbox('LABEL 55', _labelVal55),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 56', _labelVal56),
+                      checkbox('LABEL 57', _labelVal57),
+                      checkbox('LABEL 58', _labelVal58),
+                      checkbox('LABEL 59', _labelVal59),
+                      checkbox('LABEL 60', _labelVal60),
+                    ]  // row widget
+                  ), // row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      checkbox('LABEL 61', _labelVal61),
+                      checkbox('LABEL 62', _labelVal62),
+                      checkbox('LABEL 63', _labelVal63),
+                      checkbox('LABEL 64', _labelVal64),
+                      checkbox('LABEL 65', _labelVal65),
+                    ]  // row widget 18 spaces
+                  ), // row 18 spaces
+                ],  // column widget
+              ), //column
+            ), // padding
+          ),  //singlescroll
+        ), // container
+        style: TextStyle(color: Colors.white),
+      ), // defaulttextstyle
     ); // scaffold
   } //body widget build
 
